@@ -1,3 +1,8 @@
+
+var audio = new Audio('/happyNewYear/image/index.mp3');
+audio.play();
+audio.loop = true;
+
 var fut = new Date("jan 22, 2023 00:00:00").getTime()
 let x = setInterval(function stime() {
     var now = new Date().getTime()

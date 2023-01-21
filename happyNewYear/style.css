@@ -43,16 +43,11 @@ body{
     font-family: 'Lobster', cursive;
     width: 250px;
     height: 250px;
-    border-radius: 32% 68% 64% 36% / 34% 30% 70% 66%;
-    box-shadow: inset 20px 20px 20px rgba(0,0,0,0.5),
-        25px 35px 20px rgba(0,0,0,0.05),
-        25px 30px 30px rgba(0,0,0,0.05),
-        inset -20px -20px -25px rgba(0,0,0,0.9);
+    border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+    box-shadow: 5px 5px 5px #FF0099;
     background-image: linear-gradient(45deg,#3023AE 0%,#FF0099 100%);
-    transition: 0.5s ease-in-out;
-}
-.modal-active-seen a:hover{
-    border-radius: 50%;
+    animation: zoom 1.3s infinite;
+    text-align: center;
 }
 .wrapper{
     position: relative;
@@ -244,4 +239,18 @@ section {
 .set3 {
     transform: scale(0.8) rotateX(180deg);
     filter: blur(2px);
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(0.9);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 15px transparent;
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 transparent;
+    }
 }

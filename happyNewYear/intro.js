@@ -1,5 +1,5 @@
 var buttonActive = document.querySelector('.button button')
-buttonActive.onclick = function(){
+buttonActive.onclick = function () {
     var boxFlower = document.querySelector('.flower-img:nth-child(1)')
     var boxFlower2 = document.querySelector('.flower-img:nth-child(2)')
     var boxFlower3 = document.querySelector('.flower-img:nth-child(3)')
@@ -36,10 +36,10 @@ buttonActive.onclick = function(){
 var mail = document.querySelector(".mail")
 var slider3 = document.querySelector(".slider3")
 var closeSlider3 = document.querySelector(".fa-xmark")
-mail.onclick = function(){
+mail.onclick = function () {
     slider3.classList.add("active")
 }
-closeSlider3.addEventListener('click', function(){
+closeSlider3.addEventListener('click', function () {
     slider3.classList.remove('active')
 })
 
@@ -47,8 +47,8 @@ closeSlider3.addEventListener('click', function(){
 // ------audio------------
 var buttonSong = document.querySelector('.button')
 var mySong = document.getElementById("song")
-buttonSong.onclick= function(){
-    if(mySong.paused){
-        mySong.play()
-    }
-}
+// buttonSong.onclick= function(){
+//     if(mySong.paused){
+//         mySong.play()
+//     }
+// }

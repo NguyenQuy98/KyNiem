@@ -521,7 +521,7 @@ body{
     }
 }
 .box-button .button{
-    width: 170px;
+    width: max-content;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -1770,7 +1770,8 @@ body{
     transition: 0.5s;
 }
 .slider3:hover .title h1{
-    animation: title 2s forwards;
+    animation: title 2s;
+    animation-fill-mode: forwards;
 }
 @keyframes title{
     0%{
@@ -1789,7 +1790,8 @@ body{
     transition: 1s;
 }
 .slider3:hover .content p{
-    animation: bodyContent 2s 1s forwards;
+    animation: bodyContent 2s 1s;
+    animation-fill-mode: forwards;
 }
 @keyframes bodyContent{
     0%{
@@ -1812,7 +1814,8 @@ body{
     margin-top: -50px;
 }
 .slider3:hover .content h3{
-    animation: fixedContent 2s 2s forwards;
+    animation: fixedContent 2s 2s;
+    animation-fill-mode: forwards;
 }
 @keyframes fixedContent{
     0%{
@@ -2089,7 +2092,7 @@ body{
 }
 .box-content .right .content .fixedContent{
     width: 200px;
-    margin-left: 50px;
+    margin-left: auto;
 }
 .box-content .right .content .fixedContent h3{
    font-size: 15px;

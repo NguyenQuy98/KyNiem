@@ -1770,7 +1770,7 @@ body{
     margin-top: -40px;
     transition: 0.5s;
 }
-.slider3:hover .title h1{
+.slider3.active .title h1{
     animation: title 2s forwards;
 }
 @keyframes title{
@@ -1783,13 +1783,13 @@ body{
 }
 .box-content .right .content p{
     padding: 30px 15px 0px 15px;
-    text-align: center;
+    text-align: justify;
     font-size: 18px;
     font-family: 'Dancing Script', cursive;
     opacity: 0;
     transition: 1s;
 }
-.slider3:hover .content p{
+.slider3.active .content p{
     animation: bodyContent 3s forwards;
 }
 @keyframes bodyContent{
@@ -1812,7 +1812,7 @@ body{
     padding: 20px 0px 0px 20px;
     margin-top: -50px;
 }
-.slider3:hover .content h3{
+.slider3.active .content h3{
     animation: fixedContent 4s forwards;
 }
 @keyframes fixedContent{

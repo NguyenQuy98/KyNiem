@@ -37,7 +37,7 @@ var mail = document.querySelector(".mail")
 var slider3 = document.querySelector(".slider3")
 var closeSlider3 = document.querySelector(".fa-xmark")
 mail.onclick = function () {
-    slider3.classList.add("active")
+    slider3.classList.add("active");
 }
 closeSlider3.addEventListener('click', function () {
     slider3.classList.remove('active')

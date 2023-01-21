@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 body{
-    background-image: url('image/background1.jpg');
+    background-image: url('image/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
@@ -26,6 +26,7 @@ body{
     align-items: center;
     flex-direction: column;
     line-height: 80px;
+    overflow: hidden;
 }
 .wrapper h1{
     font-size: 40px;
@@ -70,4 +71,140 @@ body{
     padding: 10px 0px;
     font-size: 25px;
     font-family: 'Fredoka One', cursive;
+}
+
+/* animation--------------------- */
+
+section {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.set {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.set div {
+    position: absolute;
+    display: block;
+}
+
+.set:nth-child(1) div {
+    width: 120px;
+    height: 120px;
+    background-size: 100%;
+    background-image: url(image/pt-1.png);
+}
+
+.set:nth-child(2) div {
+    width: 240px;
+    height: 240px;
+    background-size: 100%;
+    background-image: url(image/pt-1.png);
+}
+
+.set3 div:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    background-size: 100%;
+    background-image: url(image/pt-1.png);
+}
+
+.set3 div {
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+    background-image: url(image/pt-1.png);
+}
+
+.set div:nth-child(1) {
+    left: 60%;
+    animation: animate 15s linear infinite;
+}
+
+.set div:nth-child(2) {
+    left: 20%;
+    animation: animate 20s linear infinite;
+}
+
+.set div:nth-child(3) {
+    left: 40%;
+    animation: animate 25s linear infinite;
+}
+
+.set div:nth-child(4) {
+    left: 0%;
+    animation: animate 15s linear infinite;
+}
+
+.set div:nth-child(5) {
+    left: 80%;
+    animation: animate 18s linear infinite;
+}
+
+.set div:nth-child(6) {
+    left: 15%;
+    animation: animate 12s linear infinite;
+}
+
+.set div:nth-child(7) {
+    left: 55%;
+    animation: animate 14s linear infinite;
+}
+
+.set div:nth-child(8) {
+    left: 90%;
+    animation: animate 25s linear infinite;
+}
+
+.set div:nth-child(9) {
+    left: 75%;
+    animation: animate 20s linear infinite;
+}
+
+.set div:nth-child(10) {
+    left: 35%;
+    animation: animate 14s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        top: -10%;
+        opacity: 0;
+        transform: translateX(20px) rotate(0deg)
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(-20px) rotate(45deg)
+    }
+    40% {
+        transform: translateX(-20px) rotate(90deg)
+    }
+    60% {
+        transform: translateX(20px) rotate(135deg)
+    }
+    80% {
+        transform: translateX(-20px) rotate(180deg)
+    }
+    100% {
+        top: 110%;
+        transform: translateX(-20px) rotate(225deg)
+    }
+}
+
+.set2 {
+    transform: rotateY(180deg);
+    filter: blur(2px);
+}
+
+.set3 {
+    transform: scale(0.8) rotateX(180deg);
+    filter: blur(4px);
 }

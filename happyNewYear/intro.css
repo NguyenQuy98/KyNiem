@@ -522,6 +522,7 @@ body{
 }
 .box-button .button{
     width: max-content;
+    min-width: 220px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -1770,8 +1771,7 @@ body{
     transition: 0.5s;
 }
 .slider3:hover .title h1{
-    animation: title 2s;
-    animation-fill-mode: forwards;
+    animation: title 2s linear forwards;
 }
 @keyframes title{
     0%{
@@ -1790,8 +1790,7 @@ body{
     transition: 1s;
 }
 .slider3:hover .content p{
-    animation: bodyContent 2s 1s;
-    animation-fill-mode: forwards;
+    animation: bodyContent 2s 1s linear forwards;
 }
 @keyframes bodyContent{
     0%{
@@ -1814,8 +1813,7 @@ body{
     margin-top: -50px;
 }
 .slider3:hover .content h3{
-    animation: fixedContent 2s 2s;
-    animation-fill-mode: forwards;
+    animation: fixedContent 2s 2s linear forwards;
 }
 @keyframes fixedContent{
     0%{

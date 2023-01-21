@@ -18,6 +18,42 @@ body{
     justify-content: center;
     align-items: center;
 }
+.modal-active-seen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:#fff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+}
+.modal-active-seen.active{
+    transform: scale(0);
+}
+.modal-active-seen a{
+    display: flex;;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    color: #fff;
+    font-family: 'Lobster', cursive;
+    width: 250px;
+    height: 250px;
+    border-radius: 32% 68% 64% 36% / 34% 30% 70% 66%;
+    box-shadow: inset 20px 20px 20px rgba(0,0,0,0.5),
+        25px 35px 20px rgba(0,0,0,0.05),
+        25px 30px 30px rgba(0,0,0,0.05),
+        inset -20px -20px -25px rgba(0,0,0,0.9);
+    background-image: linear-gradient(45deg,#3023AE 0%,#FF0099 100%);
+    transition: 0.5s ease-in-out;
+}
+.modal-active-seen a:hover{
+    border-radius: 50%;
+}
 .wrapper{
     position: relative;
     width: 100%;

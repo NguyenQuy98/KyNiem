@@ -1,7 +1,12 @@
-
-var audio = new Audio('/happyNewYear/image/index.mp3');
-audio.play();
-audio.loop = true;
+var active_seen = document.getElementById("active-seen")
+var songIndex = document.getElementById("songIndex")
+active_seen.onclick = function () {
+    if (songIndex.paused) {
+        songIndex.play();
+        songIndex.loop = true;
+    }
+    document.getElementById("modal-active-seen").classList.add("active");
+}
 
 var fut = new Date("jan 22, 2023 00:00:00").getTime()
 let x = setInterval(function stime() {
@@ -50,7 +55,6 @@ var timer = {
             if (self.seconds == 0) {
                 for (let i = 0; i < set_1.length; i++) {
                     let val_image = Math.floor(Math.random() * images.length);
-                    console.log(val_image);
                     document.getElementById("set-1-" + i).style.backgroundImage = 'url(image/' + images[val_image] + ')';
                 }
                 self.seconds = 20;

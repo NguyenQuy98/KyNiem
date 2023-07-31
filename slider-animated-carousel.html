@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Slider Animated Carousel</title>
+        <!-- Include FontAwesome CSS and custom styles from index.css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="slider-animated-carousel.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- Loading progress bar -->
+            <div class="loadbar" style="width: 0;"></div>
+            <!-- Slide container -->
+            <div id="slide">
+                <div class="item"
+                    style="background-image: url('https://i.postimg.cc/PrMGqZwx/pexels-m-venter-1659437.jpg');">
+                    <div class="content">
+                        <div class="name">EXPLORE NATURE 1</div>
+                        <div class="des">Some beautiful roads cannot be discovered without getting lost.</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item"
+                    style="background-image: url('https://i.postimg.cc/bw6KxhLf/pexels-eberhard-grossgasteiger-1062249.jpg');">
+                    <div class="content">
+                        <div class="name">EXPLORE NATURE 2</div>
+                        <div class="des">Some beautiful roads cannot be discovered without getting lost.</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item"
+                    style="background-image: url('https://i.postimg.cc/CMkTW9Mb/pexels-eberhard-grossgasteiger-572897.jpg');">
+                    <div class="content">
+                        <div class="name">EXPLORE NATURE 3</div>
+                        <div class="des">Some beautiful roads cannot be discovered without getting lost.</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item"
+                    style="background-image: url('https://i.postimg.cc/6qdkn4bM/pexels-joyston-judah-933054.jpg');">
+                    <div class="content">
+                        <div class="name">EXPLORE NATURE 4</div>
+                        <div class="des">Some beautiful roads cannot be discovered without getting lost.</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="item"
+                    style="background-image: url('https://i.postimg.cc/RVm59Gqy/pexels-roberto-nickson-2559941.jpg');">
+                    <div class="content">
+                        <div class="name">EXPLORE NATURE 5</div>
+                        <div class="des">Some beautiful roads cannot be discovered without getting lost.</div>
+                        <button>See more</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation buttons -->
+            <div class="buttons">
+                <button id="prev"><i class="fas fa-angle-left"></i></button>
+                <button id="next"><i class="fas fa-angle-right"></i></button>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+                $("#next").on("click", function () {
+                    const slideRef = $("#slide");
+                    const $listItems = $("#slide .item");
+                    const items = slideRef.find(".item");
+                    $listItems.eq(0).insertAfter($listItems.eq(items.length - 1));
+                });
+
+                $("#prev").on("click", function () {
+                    const slideRef = $("#slide");
+                    const $listItems = $("#slide .item");
+                    const items = slideRef.find(".item");
+                    $listItems.eq(items.length - 1).insertBefore($listItems.eq(0));
+                });
+            });
+
+        </script>
+    </body>
+
+</html>

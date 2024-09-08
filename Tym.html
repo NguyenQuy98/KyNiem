@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️</title>
+    <style>
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="heart" width="1920" height="947"></canvas>
+    <script>
+        window.requestAnimationFrame =
+            window.__requestAnimationFrame ||
+            window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback, element) {
+                var lastTime = element.__lastTime;
+                if (lastTime === undefined) {
+                    lastTime = 0;
+                }
+                var currTime = Date.now();
+                var timeToCall = Math.max(1, 33 - (currTime - lastTime));
+                window.setTimeout(callback, timeToCall);
+                element.__lastTime = currTime + timeToCall;
+            };
+
+        var init = function () {
+            var pulse = function (kx, ky) {
+                targetPoints[i][0] = kx * pointsOrigin[i][0] + w;
+                targetPoints[i][1] = ky * pointsOrigin[i][1] + h;
+            };
+
+            var e = [];
+            for (i = 0; i < heartPointsCount; i++) {
+                var x = rand() * width;
+                var y = rand() * height;
+                e[i] = {
+                    vx: 0,
+                    vy: 0,
+                    R: 2,
+                    speed: rand() * 5,
+                    q: ~~(rand() * heartPointsCount),
+                    D: 2 * (i % 2) - 1,
+                    force: 0.2 * rand() + 0.7,
+                    f: `hsla(${~~(40 * rand() + 60)}, ${~~(60 * rand() + 20)}%, ${~~(60 * rand() + 20)}%, 0.3)`,
+                    trace: []
+                };
+                for (var k = 0; k < traceCount; k++) e[i].trace[k] = { x: x, y: y };
+            }
+
+            // Render function here...
+        };
+
+        init();
+    </script>
+</body>
+</html>

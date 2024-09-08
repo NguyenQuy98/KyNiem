@@ -4,67 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️</title>
+    <title>❤️ Heart Animation</title>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
         canvas {
             position: absolute;
             left: 0;
             top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <canvas id="heart" width="1920" height="947"></canvas>
+    <canvas id="heartCanvas"></canvas>
     <script>
-        window.requestAnimationFrame =
-            window.__requestAnimationFrame ||
-            window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (callback, element) {
-                var lastTime = element.__lastTime;
-                if (lastTime === undefined) {
-                    lastTime = 0;
-                }
-                var currTime = Date.now();
-                var timeToCall = Math.max(1, 33 - (currTime - lastTime));
-                window.setTimeout(callback, timeToCall);
-                element.__lastTime = currTime + timeToCall;
-            };
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        var init = function () {
-            var pulse = function (kx, ky) {
-                targetPoints[i][0] = kx * pointsOrigin[i][0] + w;
-                targetPoints[i][1] = ky * pointsOrigin[i][1] + h;
-            };
+        const numParticles = 1000;
+        const particles = [];
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
 
-            var e = [];
-            for (i = 0; i < heartPointsCount; i++) {
-                var x = rand() * width;
-                var y = rand() * height;
-                e[i] = {
-                    vx: 0,
-                    vy: 0,
-                    R: 2,
-                    speed: rand() * 5,
-                    q: ~~(rand() * heartPointsCount),
-                    D: 2 * (i % 2) - 1,
-                    force: 0.2 * rand() + 0.7,
-                    f: `hsla(${~~(40 * rand() + 60)}, ${~~(60 * rand() + 20)}%, ${~~(60 * rand() + 20)}%, 0.3)`,
-                    trace: []
-                };
-                for (var k = 0; k < traceCount; k++) e[i].trace[k] = { x: x, y: y };
+        function rand(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createHeartShape() {
+            for (let i = 0; i < numParticles; i++) {
+                const angle = Math.PI * 2 * Math.random();
+                const radius = Math.sqrt(Math.random()) * 20;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: rand(-1, 1),
+                    vy: rand(-1, 1),
+                    size: rand(1, 3),
+                    color: `hsla(${rand(0, 360)}, 100%, 50%, 0.8)`
+                });
             }
+        }
 
-            // Render function here...
-        };
+        function update() {
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
 
-        init();
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            });
+        }
+
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            });
+        }
+
+        function animate() {
+            update();
+            render();
+            requestAnimationFrame(animate);
+        }
+
+        createHeartShape();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>

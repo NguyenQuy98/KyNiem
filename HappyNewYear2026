@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tết An Khang</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* BACKGROUND */
+body {
+  background: radial-gradient(circle at top, #5b0f0f, #1a0000);
+}
+
+/* SCENE */
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* TREE */
+.tree {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 260px;
+  background: url("https://i.imgur.com/V0pQpZk.png") no-repeat center/contain;
+  z-index: 3;
+}
+
+/* BLOSSOM AREA */
+.blossom {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 350px;
+  background: url("https://i.imgur.com/7M4ZqN5.png") no-repeat center/contain;
+  z-index: 2;
+}
+
+/* LANTERN */
+.lantern {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  animation: float 10s infinite ease-in-out;
+}
+
+.lantern img {
+  width: 100%;
+  height: auto;
+}
+
+/* PHOTO UNDER LANTERN */
+.photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 2px solid #ffd966;
+  background: #fff;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+<div class="scene">
+
+  <!-- BLOSSOM -->
+  <div class="blossom"></div>
+
+  <!-- TREE -->
+  <div class="tree"></div>
+
+  <!-- LANTERNS -->
+  <div class="lantern" style="left:10%; top:20%; animation-delay:0s">
+    <img src="https://i.imgur.com/6P6QKXK.png" />
+    <div class="photo">
+      <img src="https://picsum.photos/100?1" />
+    </div>
+  </div>
+
+  <div class="lantern" style="left:70%; top:25%; animation-delay:2s">
+    <img src="https://i.imgur.com/6P6QKXK.png" />
+    <div class="photo">
+      <img src="https://picsum.photos/100?2" />
+    </div>
+  </div>
+
+  <div class="lantern" style="left:30%; top:10%; animation-delay:4s">
+    <img src="https://i.imgur.com/6P6QKXK.png" />
+    <div class="photo">
+      <img src="https://picsum.photos/100?3" />
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

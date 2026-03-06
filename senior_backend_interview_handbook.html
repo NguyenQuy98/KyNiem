@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Backend Interview Handbook</title>
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background:#f5f6fa;
+}
+header{
+    background:#2f3640;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+.section{
+    margin-bottom:40px;
+}
+.section h2{
+    background:#273c75;
+    color:white;
+    padding:12px;
+    border-radius:6px;
+}
+.question{
+    background:white;
+    margin-top:10px;
+    border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.q-header{
+    padding:14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.q-content{
+    display:none;
+    padding:15px;
+    border-top:1px solid #eee;
+}
+.answer{
+    margin-bottom:10px;
+}
+.explain{
+    background:#f1f2f6;
+    padding:10px;
+    border-radius:5px;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Senior Backend Developer Interview Handbook</h1>
+<p>Laravel • System Design • Database • Distributed Systems • Leadership</p>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2>1. Laravel Core</h2>
+
+<div class="question">
+<div class="q-header">What is the Laravel Service Container?</div>
+<div class="q-content">
+<div class="answer">
+The Service Container is Laravel's dependency injection container that manages class dependencies and resolves them automatically when needed.
+</div>
+<div class="explain">
+It helps decouple classes and makes code easier to test and maintain. Instead of manually creating dependencies, Laravel automatically injects them into controllers or services.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">What is Middleware in Laravel?</div>
+<div class="q-content">
+<div class="answer">
+Middleware filters HTTP requests entering your application. It runs before the request reaches the controller.
+</div>
+<div class="explain">
+Typical use cases include authentication, logging, CORS control, and rate limiting. Middleware forms a request pipeline in Laravel.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Explain Eloquent ORM.</div>
+<div class="q-content">
+<div class="answer">
+Eloquent is Laravel's Object Relational Mapping system that allows developers to interact with database tables as PHP objects.
+</div>
+<div class="explain">
+Instead of writing raw SQL, developers manipulate models representing database tables. Relationships such as hasMany or belongsTo simplify database operations.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Lazy Loading vs Eager Loading</div>
+<div class="q-content">
+<div class="answer">
+Lazy loading loads relationships only when they are accessed, while eager loading loads relationships in advance using the <code>with()</code> method.
+</div>
+<div class="explain">
+Lazy loading can cause the N+1 query problem. Eager loading solves this by retrieving related data in fewer queries.
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>2. Database & Performance</h2>
+
+<div class="question">
+<div class="q-header">What is a database index?</div>
+<div class="q-content">
+<div class="answer">
+An index is a data structure used to improve the speed of data retrieval operations in a database.
+</div>
+<div class="explain">
+Indexes work like the index of a book. Instead of scanning every row, the database quickly locates rows using the index structure.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">What is the N+1 Query Problem?</div>
+<div class="q-content">
+<div class="answer">
+It occurs when one query retrieves a list of records and additional queries are executed for each record.
+</div>
+<div class="explain">
+For example loading users and then loading posts for each user individually. This dramatically increases database queries and slows down performance.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Explain Database Transactions</div>
+<div class="q-content">
+<div class="answer">
+A transaction groups multiple database operations into a single unit of work.
+</div>
+<div class="explain">
+Transactions ensure ACID properties: Atomicity, Consistency, Isolation, and Durability. If one operation fails, the entire transaction is rolled back.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">When should Redis caching be used?</div>
+<div class="q-content">
+<div class="answer">
+Redis should be used when frequently accessed data needs to be retrieved quickly without querying the database repeatedly.
+</div>
+<div class="explain">
+Redis stores data in memory, making it extremely fast. It is commonly used for caching queries, sessions, queues, and rate limiting.
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>3. System Design</h2>
+
+<div class="question">
+<div class="q-header">Design a URL Shortener</div>
+<div class="q-content">
+<div class="answer">
+The system stores a short code mapped to the original URL. A request checks Redis cache first, then database if necessary.
+</div>
+<div class="explain">
+Caching frequently accessed short links reduces database queries and improves redirect speed.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Design a Real-time Notification System</div>
+<div class="q-content">
+<div class="answer">
+Events trigger messages that are pushed into a queue and processed by workers that send notifications via WebSocket, email, or push services.
+</div>
+<div class="explain">
+Using queues ensures that notification processing does not block user requests and allows scaling of worker services.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Design a SaaS Multi-tenant Architecture</div>
+<div class="q-content">
+<div class="answer">
+Multi-tenant systems can use shared databases, separate schemas, or separate databases for each tenant.
+</div>
+<div class="explain">
+Shared databases are cheaper but less isolated, while separate databases provide strong isolation and scalability for enterprise SaaS systems.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Design an IoT Monitoring System</div>
+<div class="q-content">
+<div class="answer">
+Devices send data through MQTT brokers, which push data into queues processed by workers and stored in time-series databases.
+</div>
+<div class="explain">
+Queues help absorb bursts of device data, and WebSocket servers push real-time updates to dashboards.
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>4. Distributed Systems</h2>
+
+<div class="question">
+<div class="q-header">What is a Load Balancer?</div>
+<div class="q-content">
+<div class="answer">
+A load balancer distributes incoming network traffic across multiple servers.
+</div>
+<div class="explain">
+It improves system availability and prevents any single server from becoming overloaded.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">Horizontal vs Vertical Scaling</div>
+<div class="q-content">
+<div class="answer">
+Vertical scaling increases the resources of a single machine, while horizontal scaling adds more machines to distribute load.
+</div>
+<div class="explain">
+Modern cloud systems prefer horizontal scaling because it allows systems to grow dynamically.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">What is CAP Theorem?</div>
+<div class="q-content">
+<div class="answer">
+CAP theorem states that distributed systems can guarantee only two of three properties: Consistency, Availability, and Partition tolerance.
+</div>
+<div class="explain">
+In real-world distributed architectures, partition tolerance is required, forcing a trade-off between consistency and availability.
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>5. Leadership & Engineering Process</h2>
+
+<div class="question">
+<div class="q-header">Why is Code Review important?</div>
+<div class="q-content">
+<div class="answer">
+Code review ensures code quality, catches bugs early, and helps share knowledge within the team.
+</div>
+<div class="explain">
+It also enforces coding standards and improves collaboration among developers.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">What is Technical Debt?</div>
+<div class="q-content">
+<div class="answer">
+Technical debt refers to future costs caused by choosing quick solutions instead of better long-term designs.
+</div>
+<div class="explain">
+If not addressed, technical debt accumulates and slows down development over time.
+</div>
+</div>
+</div>
+
+<div class="question">
+<div class="q-header">How do you handle production incidents?</div>
+<div class="q-content">
+<div class="answer">
+First mitigate the issue (rollback or hotfix), then investigate root causes and implement preventive solutions.
+</div>
+<div class="explain">
+Good engineering teams also implement monitoring and alerts to detect incidents quickly.
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Generated Senior Backend Interview Handbook
+</footer>
+
+<script>
+const headers = document.querySelectorAll(".q-header");
+
+headers.forEach(header => {
+  header.addEventListener("click", () => {
+    const content = header.nextElementSibling;
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Backend Interview Practice</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f6fa;
+}
+header{
+    padding:20px;
+    background:#222;
+    color:white;
+}
+.container{
+    padding:20px;
+    max-width:1200px;
+    margin:auto;
+}
+.controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+input,select{
+    padding:8px;
+    font-size:14px;
+}
+.stats{
+    margin:10px 0 20px 0;
+}
+.card{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+.question{
+    font-weight:bold;
+    cursor:pointer;
+}
+.answer, .explain{
+    display:none;
+    margin-top:10px;
+}
+button{
+    padding:6px 10px;
+    cursor:pointer;
+}
+.star{
+    float:right;
+}
+.tag{
+    font-size:12px;
+    padding:2px 6px;
+    background:#ddd;
+    border-radius:4px;
+    margin-left:5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>Senior Backend Interview Practice Web App</h2>
+</header>
+
+<div class="container">
+
+<div class="controls">
+<input type="text" id="search" placeholder="Search questions...">
+
+<select id="categoryFilter">
+<option value="all">All Categories</option>
+<option value="laravel">Laravel</option>
+<option value="database">Database</option>
+<option value="system">System Design</option>
+<option value="api">API</option>
+<option value="architecture">Architecture</option>
+</select>
+
+</div>
+
+<div class="stats">
+<b>Progress:</b> <span id="progress">0</span>/<span id="total">0</span> completed
+</div>
+
+<div id="questions"></div>
+
+</div>
+
+<script>
+
+const data = [
+{
+cat:"laravel",
+q:"Explain Laravel Service Container",
+a:"Laravel Service Container is a powerful dependency injection container used to manage class dependencies.",
+e:"A service container allows automatic dependency resolution. Instead of manually creating objects, Laravel resolves them automatically."
+},
+{
+cat:"laravel",
+q:"What is Middleware in Laravel?",
+a:"Middleware filters HTTP requests entering the application.",
+e:"Middleware handles authentication, logging, security checks before request reaches controller."
+},
+{
+cat:"database",
+q:"What is database indexing?",
+a:"Index improves query speed by creating lookup structure.",
+e:"Without index database scans full table. Index creates faster lookup similar to book index."
+},
+{
+cat:"database",
+q:"Difference between WHERE and HAVING",
+a:"WHERE filters rows before grouping, HAVING filters after aggregation.",
+e:"HAVING is used with GROUP BY because it filters aggregated results."
+},
+{
+cat:"system",
+q:"How would you design a scalable notification system?",
+a:"Use message queue, workers, and event driven architecture.",
+e:"Queues like RabbitMQ/Kafka decouple producer and consumer allowing scaling."
+},
+{
+cat:"system",
+q:"Explain Microservices Architecture",
+a:"Microservices split system into independent services.",
+e:"Each service has own database, deployment and responsibility."
+},
+{
+cat:"api",
+q:"Difference between REST and GraphQL",
+a:"REST uses multiple endpoints while GraphQL uses single endpoint.",
+e:"GraphQL allows client to request only needed data."
+},
+{
+cat:"api",
+q:"What is API rate limiting?",
+a:"Rate limiting restricts number of requests per client.",
+e:"It prevents abuse and protects server resources."
+},
+{
+cat:"architecture",
+q:"What is Event Driven Architecture?",
+a:"Systems communicate via events.",
+e:"Events trigger asynchronous processing improving scalability."
+},
+{
+cat:"architecture",
+q:"Explain CQRS pattern",
+a:"Separate read and write operations.",
+e:"Write model updates data while read model optimized for queries."
+}
+];
+
+// duplicate to create large dataset
+for(let i=0;i<12;i++){
+data.push(...JSON.parse(JSON.stringify(data)));
+}
+
+data.forEach((d,i)=>{
+d.id=i;
+d.star=false;
+d.done=false;
+});
+
+document.getElementById("total").innerText=data.length;
+
+function render(){
+
+let search=document.getElementById("search").value.toLowerCase();
+let cat=document.getElementById("categoryFilter").value;
+
+let html="";
+
+data.forEach(item=>{
+
+if(search && !item.q.toLowerCase().includes(search)) return;
+if(cat!="all" && item.cat!=cat) return;
+
+html+=`
+<div class="card">
+<div class="question" onclick="toggle(${item.id})">
+${item.q}
+<span class="tag">${item.cat}</span>
+<button class="star" onclick="star(event,${item.id})">${item.star?"★":"☆"}</button>
+</div>
+
+<div class="answer" id="a${item.id}">
+<b>Answer:</b><br>${item.a}
+</div>
+
+<div class="explain" id="e${item.id}">
+<b>Explanation:</b><br>${item.e}
+<br><br>
+<button onclick="markDone(${item.id})">Mark as Learned</button>
+</div>
+</div>
+`
+});
+
+document.getElementById("questions").innerHTML=html;
+
+updateProgress()
+}
+
+function toggle(id){
+let a=document.getElementById("a"+id);
+let e=document.getElementById("e"+id);
+
+a.style.display=a.style.display=="block"?"none":"block";
+e.style.display=e.style.display=="block"?"none":"block";
+}
+
+function star(event,id){
+event.stopPropagation()
+data[id].star=!data[id].star
+render()
+}
+
+function markDone(id){
+data[id].done=true
+updateProgress()
+}
+
+function updateProgress(){
+let done=data.filter(d=>d.done).length
+document.getElementById("progress").innerText=done
+}
+
+document.getElementById("search").addEventListener("input",render)
+document.getElementById("categoryFilter").addEventListener("change",render)
+
+render()
+
+</script>
+
+</body>
+</html>

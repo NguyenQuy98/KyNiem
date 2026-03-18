@@ -135,7 +135,17 @@ Partition, warehouse.
 </div>
 
 </div>
+  <div class="container">
+      <h1>🔥 Pattern</h1>
 
+      <div class="section">
+        <div class="question">Bạn dùng pattern gì trong Laravel?</div>
+        <button onclick="toggle(this)">Xem đáp án</button>
+        <div class="answer">
+          Tôi thường dùng Service và Repository để tách business logic và data access. Với các logic thay đổi runtime tôi dùng Strategy Pattern. Khi cần scale hoặc decouple hệ thống, tôi dùng Event-Driven kết hợp Queue. Ngoài ra tôi áp dụng DTO để quản lý data và Pipeline để xử lý flow phức tạp. Với hệ thống lớn hơn, tôi có thể áp dụng CQRS hoặc Saga Pattern
+        </div>
+      </div>
+    </div>
 <script>
 function toggle(btn) {
   const ans = btn.nextElementSibling;

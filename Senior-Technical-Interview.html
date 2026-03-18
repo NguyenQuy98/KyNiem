@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Senior Technical Interview - Laravel & Vue</title>
+<style>
+body {font-family: Arial; background:#f4f6fb; margin:0;}
+.container {max-width:1100px; margin:auto; padding:20px;}
+h1 {text-align:center;}
+.section {background:#fff; padding:20px; margin-bottom:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.08);} 
+.question {font-weight:bold; margin-top:15px;}
+.answer {display:none; margin-top:10px; padding:12px; background:#eef3ff; border-left:4px solid #4a6cf7; border-radius:6px;}
+button {margin-top:10px; padding:6px 12px; border:none; background:#4a6cf7; color:white; border-radius:6px; cursor:pointer;}
+button:hover {background:#2f4ed8;}
+pre {background:#111; color:#0f0; padding:12px; border-radius:6px; overflow:auto;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🔥 Senior Technical Interview (Laravel + Vue)</h1>
+
+<div class="section">
+<h2>Backend - Laravel</h2>
+
+<div class="question">1. Service Container là gì?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Quản lý dependency và resolve tự động.
+<pre>
+public function __construct(OrderService $service) {}
+</pre>
+</div>
+
+<div class="question">2. Queue dùng để làm gì?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Xử lý async giúp giảm thời gian response.
+<pre>
+dispatch(new Job());
+</pre>
+</div>
+
+<div class="question">3. N+1 Query là gì?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Query lặp nhiều lần → chậm.
+<pre>
+User::with('posts')->get();
+</pre>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Database & Performance</h2>
+
+<div class="question">4. Index là gì?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Giúp tăng tốc query nhưng giảm tốc insert.
+</div>
+
+<div class="question">5. Redis dùng khi nào?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Cache, queue, session.
+</div>
+
+<div class="question">6. Optimize query thế nào?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Index, select field, tránh SELECT *.
+</div>
+
+</div>
+
+<div class="section">
+<h2>System Design</h2>
+
+<div class="question">7. Report lớn xử lý sao?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Cache + Pre-aggregation.
+</div>
+
+<div class="question">8. Cache invalidation là gì?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Xóa cache khi data thay đổi.
+</div>
+
+<div class="question">9. Load balancing?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Phân phối request nhiều server.
+</div>
+
+</div>
+
+<div class="section">
+<h2>VueJS</h2>
+
+<div class="question">10. Lifecycle Vue?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+created, mounted, updated.
+</div>
+
+<div class="question">11. Reactivity?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Data thay đổi → UI update.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Senior Thinking</h2>
+
+<div class="question">12. API chậm xử lý sao?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Cache, optimize DB, queue.
+</div>
+
+<div class="question">13. 10 triệu record?</div>
+<button onclick="toggle(this)">Xem</button>
+<div class="answer">
+Partition, warehouse.
+</div>
+
+</div>
+
+</div>
+
+<script>
+function toggle(btn) {
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>

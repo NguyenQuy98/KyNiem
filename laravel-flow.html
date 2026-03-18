@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Laravel Flow Interview Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #020617;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            color: #38bdf8;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+
+        .sidebar a:hover {
+            color: white;
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 30px;
+            width: 100%;
+        }
+
+        .card {
+            background: #020617;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        h1, h2 {
+            color: #38bdf8;
+        }
+
+        pre {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        button {
+            background: #38bdf8;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .flow {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Laravel Flow</h2>
+    <a href="#flow">Flow</a>
+    <a href="#request">Request</a>
+    <a href="#route">Route</a>
+    <a href="#middleware">Middleware</a>
+    <a href="#controller">Controller</a>
+    <a href="#service">Service</a>
+    <a href="#model">Model</a>
+    <a href="#event">Event</a>
+    <a href="#queue">Queue</a>
+    <a href="#cache">Cache</a>
+</div>
+
+<div class="content">
+
+    <div id="flow" class="card">
+        <h1>🔥 Laravel Flow</h1>
+        <div class="flow">
+Request → Route → Middleware → Controller → Service → Model → DB  
+                        ↓  
+                 Event / Queue / Cache
+        </div>
+    </div>
+
+    <div id="request" class="card">
+        <h2>1. Request</h2>
+        <p>Nhận dữ liệu từ client (GET, POST...)</p>
+
+        <button onclick="toggle('req')">Xem ví dụ</button>
+        <pre id="req" class="hidden">
+public function store(Request $request)
+{
+    $name = $request->input('name');
+}
+        </pre>
+    </div>
+
+    <div id="route" class="card">
+        <h2>2. Route</h2>
+        <p>Mapping URL tới Controller</p>
+
+        <button onclick="toggle('routeEx')">Xem ví dụ</button>
+        <pre id="routeEx" class="hidden">
+Route::post('/users', [UserController::class, 'store']);
+        </pre>
+    </div>
+
+    <div id="middleware" class="card">
+        <h2>3. Middleware</h2>
+        <p>Filter request (Auth, log...)</p>
+
+        <button onclick="toggle('mid')">Xem ví dụ</button>
+        <pre id="mid" class="hidden">
+Route::post('/users', [UserController::class, 'store'])
+    ->middleware('auth');
+        </pre>
+    </div>
+
+    <div id="controller" class="card">
+        <h2>4. Controller</h2>
+        <p>Điều phối request, không nên chứa business logic</p>
+
+        <button onclick="toggle('ctl')">Xem ví dụ</button>
+        <pre id="ctl" class="hidden">
+class UserController extends Controller
+{
+    public function store(Request $request)
+    {
+        return $this->userService->createUser($request->all());
+    }
+}
+        </pre>
+    </div>
+
+    <div id="service" class="card">
+        <h2>5. Service</h2>
+        <p>Chứa business logic</p>
+
+        <button onclick="toggle('ser')">Xem ví dụ</button>
+        <pre id="ser" class="hidden">
+class UserService
+{
+    public function createUser($data)
+    {
+        return User::create($data);
+    }
+}
+        </pre>
+    </div>
+
+    <div id="model" class="card">
+        <h2>6. Model</h2>
+        <p>Đại diện bảng DB</p>
+
+        <button onclick="toggle('modelEx')">Xem ví dụ</button>
+        <pre id="modelEx" class="hidden">
+class User extends Model
+{
+    protected $fillable = ['name', 'email'];
+}
+        </pre>
+    </div>
+
+    <div id="event" class="card">
+        <h2>7. Event</h2>
+        <p>Xử lý sau khi action xảy ra</p>
+
+        <button onclick="toggle('eventEx')">Xem ví dụ</button>
+        <pre id="eventEx" class="hidden">
+event(new UserCreated($user));
+        </pre>
+    </div>
+
+    <div id="queue" class="card">
+        <h2>8. Queue</h2>
+        <p>Chạy task nền (send mail, job nặng)</p>
+
+        <button onclick="toggle('queueEx')">Xem ví dụ</button>
+        <pre id="queueEx" class="hidden">
+SendEmailJob::dispatch($user);
+        </pre>
+    </div>
+
+    <div id="cache" class="card">
+        <h2>9. Cache</h2>
+        <p>Tăng performance</p>
+
+        <button onclick="toggle('cacheEx')">Xem ví dụ</button>
+        <pre id="cacheEx" class="hidden">
+Cache::remember('users', 60, function () {
+    return User::all();
+});
+        </pre>
+    </div>
+
+    <div class="card">
+        <h2>🚀 Full Flow Example (Senior)</h2>
+        <pre>
+public function createUser($data)
+{
+    DB::beginTransaction();
+
+    try {
+        $user = User::create($data);
+
+        Cache::forget('users');
+
+        event(new UserCreated($user));
+
+        DB::commit();
+
+        return $user;
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        throw $e;
+    }
+}
+        </pre>
+    </div>
+
+</div>
+
+<script>
+function toggle(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('hidden');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Technical Test - FullStack Senior</title>
+  <style>
+    body { font-family: Arial; background:#f5f6fa; margin:0; }
+    .container { max-width:1000px; margin:auto; padding:20px; }
+    h1 { text-align:center; }
+    .section { background:white; padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1);} 
+    .question { font-weight:bold; margin-top:10px; }
+    .answer { display:none; margin-top:10px; padding:10px; background:#eef; border-radius:6px; }
+    button { margin-top:10px; padding:6px 12px; border:none; background:#3498db; color:white; border-radius:6px; cursor:pointer; }
+    button:hover { background:#2980b9; }
+    pre { background:#222; color:#0f0; padding:10px; border-radius:6px; overflow:auto; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Technical Test - Senior FullStack</h1>
+
+  <div class="section">
+    <h2>Phần 1: Lý Thuyết</h2>
+
+    <div class="question">1. RESTful API là gì?</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">REST là kiến trúc API dựa trên HTTP với các nguyên tắc: Stateless, resource-based, sử dụng GET/POST/PUT/DELETE.</div>
+
+    <div class="question">2. Khi nào dùng Redis?</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">Dùng cho cache, session, queue và tối ưu performance.</div>
+
+    <div class="question">3. N+1 Query là gì?</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">Lỗi query lặp nhiều lần. Fix bằng eager loading (with()).</div>
+
+  </div>
+
+  <div class="section">
+    <h2>Phần 2: Thực Hành</h2>
+
+    <div class="question">1. Thiết kế RBAC DB</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">
+      <pre>
+users
+roles
+permissions
+role_user
+permission_role
+      </pre>
+    </div>
+
+    <div class="question">2. Optimize query</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">
+      <pre>
+CREATE INDEX idx_created_at ON orders(created_at);
+      </pre>
+    </div>
+
+    <div class="question">3. Queue Laravel</div>
+    <button onclick="toggle(this)">Xem đáp án</button>
+    <div class="answer">
+      <pre>
+dispatch(new SendEmailJob());
+php artisan queue:work
+      </pre>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggle(btn) {
+  const answer = btn.nextElementSibling;
+  answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>

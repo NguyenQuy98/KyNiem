@@ -152,7 +152,74 @@ php artisan queue:work
     </div>
   </div>
 </div>
+<div class="container">
+    <div class="question">Data Warehouse dùng khi nào?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Dùng khi data rất lớn và report phức tạp.
+      <pre>App DB → ETL → Data Warehouse</pre>
+      Tách hệ thống OLTP và OLAP.
+    </div>
+  </div>
 
+  <div class="section">
+    <div class="title">⚡ 2. Cache & Consistency</div>
+
+    <div class="question">TTL là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Cache tự hết hạn sau thời gian nhất định.
+      Chấp nhận data có thể không realtime.
+    </div>
+
+    <div class="question">Cache Invalidation là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Khi data thay đổi → xóa cache để đảm bảo đúng.
+      Đây là vấn đề khó trong system design.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">🚀 3. Realtime System</div>
+
+    <div class="question">Làm sao vừa realtime vừa nhanh?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Dùng Hybrid approach:
+      <pre>Cache tổng
++ Update increment khi có data mới</pre>
+      Không cần tính lại toàn bộ.
+    </div>
+
+    <div class="question">Incremental Update là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Khi có data mới → chỉ cộng thêm vào kết quả cũ.
+      Giúp giảm chi phí tính toán.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">🧠 4. Senior Mindset</div>
+
+    <div class="question">Cách xử lý hệ thống lớn?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      1. Giảm data xử lý (partition)
+      <br>2. Giảm số lần tính toán (cache)
+      <br>3. Tách hệ thống (warehouse)
+      <br>4. Tính toán thông minh (incremental)
+    </div>
+
+    <div class="question">Câu trả lời chuẩn phỏng vấn?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Phân tích bottleneck → partition → pre-aggregation → cache → scale system.
+    </div>
+  </div>
+
+</div>
 <script>
 function toggle(btn) {
   const answer = btn.nextElementSibling;

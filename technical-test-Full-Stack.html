@@ -69,6 +69,88 @@ php artisan queue:work
     </div>
 
   </div>
+  <div class="section">
+    <div class="title">🚀 1. Performance & Report Optimization</div>
+
+    <div class="question">Vì sao report chậm?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Do query lớn, data nhiều, join phức tạp → DB bị bottleneck (CPU + I/O).
+    </div>
+
+    <div class="question">Cache Redis hoạt động thế nào?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Cache giúp lưu kết quả tạm thời để tránh query lại.
+      <pre>User → Cache → (hit) trả luôn
+       → (miss) → DB → lưu cache → trả</pre>
+      Giảm tải DB đáng kể.
+    </div>
+
+    <div class="question">Pre-calculation là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Thay vì tính realtime → tính trước bằng cron job.
+      Trade-off: giảm realtime, tăng performance.
+    </div>
+
+    <div class="question">Index DB là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Index giống mục lục sách → giúp truy vấn nhanh hơn.
+      Nhưng sẽ làm chậm insert/update.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">⚡ 2. Scaling & High Load System</div>
+
+    <div class="question">Tại sao hệ thống quá tải?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Do nhiều request đồng thời → CPU, DB, network quá tải.
+    </div>
+
+    <div class="question">Rate limiting là gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Giới hạn số request/user để tránh spam và bảo vệ hệ thống.
+    </div>
+
+    <div class="question">Load balancing hoạt động thế nào?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Phân phối request đến nhiều server.
+      <pre>Client → LB → Server 1
+               → Server 2
+               → Server 3</pre>
+    </div>
+
+    <div class="question">Queue giúp gì?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Tách xử lý nặng ra khỏi request chính → tăng tốc response.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">🧠 3. Tư duy Senior</div>
+
+    <div class="question">Cách giải quyết vấn đề performance?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      1. Giảm số lần xử lý (Cache, Pre-calc)
+      <br>2. Tăng tốc xử lý (Index, optimize query)
+      <br>3. Phân tán tải (Load balancing, queue)
+      <br>4. Giới hạn hệ thống (Rate limit)
+    </div>
+
+    <div class="question">Câu trả lời chuẩn khi đi phỏng vấn?</div>
+    <button onclick="toggle(this)">Xem lý thuyết</button>
+    <div class="answer">
+      Phân tích bottleneck → áp dụng cache → optimize DB → scale hệ thống → dùng queue → rate limit.
+    </div>
+  </div>
 </div>
 
 <script>
